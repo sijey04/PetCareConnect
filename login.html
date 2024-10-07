@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .custom-navbar-bg {
+      background-color: #6096BA;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-100 flex flex-col">
+
+  <header class="custom-navbar-bg text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <nav class="space-x-4">
+        <a href="#" class="hover:underline">Special offers</a>
+        <a href="#" class="hover:underline">Home</a>
+        <a href="#" class="hover:underline">Contact</a>
+      </nav>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto flex items-center justify-center px-4" style="background-image: url('https://example.com/dog.jpg'); background-size: cover; background-position: center;">
+    <div class="bg-white rounded-lg shadow-lg p-8 flex w-full max-w-4xl">
+      <div class="w-1/2 pr-8 border-r">
+        <h1 class="text-3xl font-bold text-blue-800">Pet Central</h1>
+        <p class="text-gray-600 mb-8">Your Furry Friend's Happy Place: Shop, Care, Love!</p>
+      </div>
+      <div class="w-1/2 pl-8">
+        <h2 class="text-2xl font-semibold mb-6 text-blue-800">Log In</h2>
+        <form id="loginForm" class="space-y-4">
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" id="email" required class="w-full border border-gray-300 rounded px-3 py-2">
+          </div>
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" id="password" required class="w-full border border-gray-300 rounded px-3 py-2">
+          </div>
+          <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">Log In</button>
+        </form>
+        <p class="mt-4 text-sm text-gray-600">
+          Don't have an account? <a href="#" class="text-blue-500 hover:underline">Sign up</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="font-semibold mb-4">Services</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Grooming</a></li>
+            <li><a href="#" class="hover:underline">Boarding</a></li>
+            <li><a href="#" class="hover:underline">Daycare</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Shopping Online</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Delivery Information</a></li>
+            <li><a href="#" class="hover:underline">Return Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">About Us</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Our Story</a></li>
+            <li><a href="#" class="hover:underline">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Customer Service</h3>
+          <p>Call: 555-123-4567</p>
+          <p>Email: support@petcentral.com</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="#" class="hover:text-blue-400"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.733 0-1.325.592-1.325 1.325v21.351c0 .733.592 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.794.715-1.794 1.763v2.313h3.587l-.467 3.622h-3.12v9.294h6.116c.733 0 1.325-.591 1.325-1.324v-21.351c0-.733-.592-1.325-1.325-1.325z"/></svg></a>
+            <a href="#" class="hover:text-blue-400"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.723-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-2.719 0-4.924 2.205-4.924 4.924 0 .386.044.762.128 1.124-4.092-.205-7.719-2.165-10.148-5.144-.424.729-.666 1.574-.666 2.476 0 1.708.869 3.215 2.188 4.099-.807-.026-1.566-.247-2.228-.616v.062c0 2.385 1.697 4.374 3.946 4.827-.413.112-.849.171-1.296.171-.317 0-.626-.031-.928-.088.627 1.956 2.444 3.379 4.6 3.419-1.684 1.32-3.808 2.107-6.115 2.107-.398 0-.79-.023-1.175-.069 2.179 1.396 4.768 2.209 7.548 2.209 9.057 0 14.01-7.506 14.01-14.01 0-.213-.005-.426-.014-.637.961-.694 1.796-1.562 2.457-2.549z"/></svg></a>
+            <a href="#" class="hover:text-blue-400"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c-5.488 0-9.837 4.449-9.837 9.837 0 4.354 2.82 8.065 6.73 9.387-.092-.799-.175-2.031.037-2.906.191-.812 1.229-5.172 1.229-5.172s-.313-.625-.313-1.548c0-1.448.84-2.53 1.885-2.53.89 0 1.319.668 1.319 1.47 0 .896-.571 2.235-.865 3.478-.246 1.04.521 1.888 1.548 1.888 1.857 0 3.287-1.959 3.287-4.785 0-2.5-1.798-4.243-4.374-4.243-2.979 0-4.725 2.234-4.725 4.545 0 .896.344 1.856.774 2.378.085.103.097.193.072.297-.079.324-.258 1.04-.293 1.182-.046.191-.151.232-.351.14-1.31-.61-2.127-2.52-2.127-4.06 0-3.302 2.399-6.34 6.92-6.34 3.63 0 6.457 2.588 6.457 6.048 0 3.609-2.271 6.514-5.426 6.514-1.059 0-2.057-.55-2.398-1.198l-.652 2.48c-.236.896-.878 2.015-1.312 2.699.986.305 2.025.471 3.108.471 5.488 0 9.837-4.449 9.837-9.837 0-5.488-4.449-9.837-9.837-9.837z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      console.log('Login attempted with:', email, password);
+    });
+  </script>
+
+</body>
+</html>
