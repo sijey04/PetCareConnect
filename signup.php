@@ -16,8 +16,8 @@ $success = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $confirm_password = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
     $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_STRING);
     $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_STRING);
     $user_type = 'customer';
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $error = "Something went wrong. Please try again.";
             }
         } catch(PDOException $e) {
-            if ($e->getCode() == 23000) {
+            if ($e->getCode() == '23000') {
                 $error = "Email already exists. Please use a different email.";
             } else {
                 $error = "Database error: " . $e->getMessage();
