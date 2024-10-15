@@ -1,18 +1,22 @@
+ CREATE DATABASE pcc_db; 
+    
     -- Users Table
-    CREATE TABLE users (
-        user_id INT AUTO_INCREMENT PRIMARY KEY,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        password_hash VARCHAR(255) NOT NULL,
-        first_name VARCHAR(100) NOT NULL,
-        last_name VARCHAR(100) NOT NULL,
-        phone_number VARCHAR(20),
-        user_type ENUM('customer', 'shop_owner', 'admin') NOT NULL,
-        is_active BOOLEAN DEFAULT TRUE,  -- Soft delete flag for disabling accounts
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        UNIQUE (email),  -- Enforces uniqueness of email
-        INDEX idx_user_type (user_type) -- Index for user type
-    );
+     CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `user_type` enum('customer','shop_owner','admin') NOT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `email_2` (`email`),
+  KEY `idx_user_type` (`user_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 
     CREATE TABLE shop_categories (
         category_id INT AUTO_INCREMENT PRIMARY KEY,
