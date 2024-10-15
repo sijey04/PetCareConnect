@@ -30,6 +30,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $db = new Connection();
         $conn = $db->getConnection();
 
+        // Check if login_attempts table exists, if not, create it
+        try {
+            $conn->query("SELECT 1 FROM login_attempts LIMIT 1");
+        } catch (PDOException $e) {
+            if ($e->getCode() == '42S02') {
+                // Table doesn't exist, create it
+                $conn->exec("CREATE TABLE login_attempts (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    email VARCHAR(255) NOT NULL,
+                    attempt_time DATETIME NOT NULL
+                )");
+            } else {
+                // Some other error occurred
+                throw $e;
+            }
+        }
+
         // Check for rate limiting
         $stmt = $conn->prepare("SELECT COUNT(*) as attempt_count, MAX(attempt_time) as last_attempt FROM login_attempts WHERE email = :email AND attempt_time > DATE_SUB(NOW(), INTERVAL :lockout_time SECOND)");
         $stmt->bindParam(':email', $email);
