@@ -57,7 +57,7 @@ This project is part of an academic course and is not open for external contribu
 - Billedo, Dean Reight
 - Valeros, Greybin
 - Cawili, Herwayne
-_ Jimenez, Myke
+- Jimenez, Myke
 
 ## Acknowledgments
 
