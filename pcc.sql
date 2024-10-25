@@ -1,7 +1,7 @@
  CREATE DATABASE pcc_db; 
     
     -- Users Table
-     CREATE TABLE `users` (
+     users | CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
@@ -16,7 +16,14 @@
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `email_2` (`email`),
   KEY `idx_user_type` (`user_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+ login_attempts | CREATE TABLE `login_attempts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `attempt_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 
     CREATE TABLE shop_categories (
         category_id INT AUTO_INCREMENT PRIMARY KEY,
