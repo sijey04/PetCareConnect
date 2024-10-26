@@ -145,7 +145,9 @@ if (isset($_GET['expired']) && $_GET['expired'] == 1) {
 <body class="flex flex-col lg:flex-row min-h-screen bg-custom-bg font-[Poppins]">
     <div class="flex-1 relative overflow-hidden bg-custom-bg min-h-[50vh] lg:min-h-screen flex items-center justify-center">
         <div class="absolute top-4 left-4 z-20">
-            <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 md:w-48">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 md:w-48">
+            </a>
         </div>
         <div class="relative w-full h-full flex items-center justify-center pl-24 md:pl-32 lg:pl-40 pb-16 md:pb-24 lg:pb-32">
             <img src="images/kitten.png" alt="Cute kitten" class="relative z-10 w-[400px] md:w-[600px] lg:w-[700px] xl:w-[800px] object-contain ml-16 md:ml-24 lg:ml-32">

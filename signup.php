@@ -116,7 +116,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="flex flex-col lg:flex-row min-h-screen bg-custom-bg font-[Poppins]">
     <div class="hidden lg:flex flex-1 relative overflow-hidden bg-custom-bg min-h-screen items-center justify-center order-1 lg:order-2 pr-24">
         <div class="absolute top-4 right-4 z-20">
-            <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 md:w-48">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 md:w-48">
+            </a>
         </div>
         <div class="image-container">
             <img src="images/kitten2.png" alt="Cute kitten" class="relative z-10">
@@ -126,7 +128,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="w-full max-w-md space-y-8 px-8 py-10 bg-white rounded-3xl shadow-xl">
             <div class="text-center">
                 <h2 class="text-3xl font-bold">Get Started With</h2>
-                <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 mx-auto mt-2">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 mx-auto mt-2">
+                </a>
                 <p class="text-gray-600 mt-2">Getting started is easy</p>
             </div>
             <?php
