@@ -112,6 +112,12 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     session_destroy();
     $error = "Your session has expired. Please log in again.";
 }
+
+// Check for session expiration message
+$expired_message = '';
+if (isset($_GET['expired']) && $_GET['expired'] == 1) {
+    $expired_message = "Your session has expired. Please log in again.";
+}
 ?>
 
 <!DOCTYPE html>
@@ -154,6 +160,11 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
             <?php if (!empty($error)): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
                     <span class="block sm:inline"><?php echo htmlspecialchars($error); ?></span>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($expired_message)): ?>
+                <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    <span class="block sm:inline"><?php echo htmlspecialchars($expired_message); ?></span>
                 </div>
             <?php endif; ?>
             <div class="flex space-x-4">
