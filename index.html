@@ -12,10 +12,10 @@
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    <div class="flex h-screen">
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <div class="flex flex-1 overflow-hidden">
         <!-- Sidebar -->
-        <aside class="w-64 bg-white shadow-md flex flex-col h-screen">
+        <aside class="w-56 bg-white shadow-md flex-shrink-0 overflow-y-auto">
             <div class="p-1 pl-6 border-b border-gray-200">
                 <img src="images/logo.png" alt="Pet Care Connect Logo" class="h-auto w-auto">
             </div>
@@ -111,9 +111,9 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto">
+        <main class="flex-1 overflow-y-auto px-8">
             <!-- Header -->
-            <header class="bg-white shadow-sm">
+            <header class="bg-white shadow-sm sticky top-0 z-10 -mx-8 px-8">
                 <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div class="flex items-center">
                         <button class="mr-4">
@@ -140,7 +140,7 @@
             </header>
 
             <!-- Hero Section -->
-            <section class="bg-gray-100 rounded-lg m-6 p-8 relative overflow-hidden">
+            <section class="bg-gray-100 rounded-lg my-6 p-8 relative overflow-hidden">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="z-10 mb-8 md:mb-0">
                         <p class="text-gray-600 mb-2">No need to worry,</p>
@@ -149,6 +149,7 @@
                         <div class="relative">
                             <input type="text" placeholder="Nearest Groom/Veterinary" class="w-full px-4 py-2 border rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <svg class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
@@ -161,131 +162,232 @@
             </section>
 
             <!-- Most Popular Section -->
-            <section class="m-6">
+            <section class="my-6">
                 <h2 class="text-2xl font-semibold mb-4">Most Popular</h2>
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop1.png" alt="Cassa de Perro Veterinary Clinic" class="w-full h-40 object-cover">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop1.png" alt="Cassa de Perro Veterinary Clinic" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Veterinary</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
                         <div class="p-4">
-                            <h3 class="font-semibold">Cassa de Perro Veterinary Clinic</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">Rumuokwu Rd, Zamboanga, Zamboanga del Sur</p>
+                            <h3 class="font-semibold text-lg">Cassa De Perro Veterinary Clinic</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Tumaga- Lurawan Rd, Zamboanga, Zamboanga del Sur</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop2.png" alt="Paws and Claws" class="w-full h-40 object-cover">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop2.png" alt="Paws and Claws" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Grooming</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
                         <div class="p-4">
-                            <h3 class="font-semibold">Paws and Claws</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">San Alfaro St, Zamboanga, 7000 Zamboanga del Sur</p>
+                            <h3 class="font-semibold text-lg">Paws and Claws</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">San Alfaro St, Zamboanga, 7000 Zamboanga del Sur</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop3.png" alt="Waltec" class="w-full h-40 object-cover">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop3.png" alt="Waltec" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Veterinary</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
                         <div class="p-4">
-                            <h3 class="font-semibold">Waltec</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">Nuñez Ext. St, Zamboanga, Zamboanga del Sur</p>
+                            <h3 class="font-semibold text-lg">Waltec</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Nuñez Ext. St, Zamboanga, Zamboanga del Sur</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Services Section -->
-            <section class="m-6">
+            <section class="my-6">
                 <h2 class="text-2xl font-semibold mb-4">Services</h2>
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden relative w-72 h-[439px] bg-cover bg-center" style="background-image: url('images/dog1.png');">
-                        <div class="p-4 h-full flex flex-col bg-black bg-opacity-50 text-white">
-                            <p class="text-sm mb-1">FULL SERVICE</p>
-                            <h3 class="font-bold text-2xl mb-2">GROOM</h3>
-                            <button class="bg-teal-400 hover:bg-teal-500 text-white px-6 py-2 rounded-full mt-auto transition duration-300">Learn More</button>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-[#D9D9D9] rounded-lg shadow-md overflow-hidden relative w-full h-[700px] bg-cover bg-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" style="background-image: url('images/dog1.png');">
+                        <div class="p-6 h-full flex flex-col bg-black bg-opacity-20 text-white transition duration-300 ease-in-out hover:bg-opacity-40">
+                            <p class="text-sm mb-2">FULL SERVICE</p>
+                            <h3 class="font-bold text-3xl mb-4">GROOM</h3>
+                            <p class="mb-4 flex-grow">Professional grooming services to keep your pet looking and feeling their best. Our expert groomers provide personalized care for all breeds.</p>
+                            <button class="bg-teal-400 hover:bg-teal-500 text-white px-6 py-3 rounded-full transition duration-300">Learn More</button>
                         </div>
                     </div>
-                    <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden relative w-72 h-[439px] bg-cover bg-center" style="background-image: url('images/dog2.png');">
-                        <div class="p-4 h-full flex flex-col bg-black bg-opacity-50 text-white">
-                            <p class="text-sm mb-1">FULL SERVICE</p>
-                            <h3 class="font-bold text-2xl mb-2">BATH</h3>
-                            <button class="bg-teal-400 hover:bg-teal-500 text-white px-6 py-2 rounded-full mt-auto transition duration-300">Learn More</button>
+                    <div class="bg-[#D9D9D9] rounded-lg shadow-md overflow-hidden relative w-full h-[700px] bg-cover bg-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" style="background-image: url('images/dog2.png');">
+                        <div class="p-6 h-full flex flex-col bg-black bg-opacity-20 text-white transition duration-300 ease-in-out hover:bg-opacity-40">
+                            <p class="text-sm mb-2">FULL SERVICE</p>
+                            <h3 class="font-bold text-3xl mb-4">BATH</h3>
+                            <p class="mb-4 flex-grow">Relaxing and thorough bath services to keep your pet clean and fresh. We use pet-friendly products for a comfortable experience.</p>
+                            <button class="bg-teal-400 hover:bg-teal-500 text-white px-6 py-3 rounded-full transition duration-300">Learn More</button>
                         </div>
                     </div>
-                    <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden relative w-72 h-[439px] bg-cover bg-center" style="background-image: url('images/dog3.png');">
-                        <div class="p-4 h-full flex flex-col bg-black bg-opacity-50 text-white">
-                            <p class="text-sm mb-1">FULL SERVICE</p>
-                            <h3 class="font-bold text-2xl mb-2">CHECK-UP</h3>
-                            <button class="bg-teal-400 hover:bg-teal-500 text-white px-6 py-2 rounded-full mt-auto transition duration-300">Learn More</button>
+                    <div class="bg-[#D9D9D9] rounded-lg shadow-md overflow-hidden relative w-full h-[700px] bg-cover bg-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" style="background-image: url('images/dog3.png');">
+                        <div class="p-6 h-full flex flex-col bg-black bg-opacity-20 text-white transition duration-300 ease-in-out hover:bg-opacity-40">
+                            <p class="text-sm mb-2">FULL SERVICE</p>
+                            <h3 class="font-bold text-3xl mb-4">CHECK-UP</h3>
+                            <p class="mb-4 flex-grow">Comprehensive veterinary check-ups to ensure your pet's health and well-being. Our experienced vets provide thorough examinations and preventive care.</p>
+                            <button class="bg-teal-400 hover:bg-teal-500 text-white px-6 py-3 rounded-full transition duration-300">Learn More</button>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Veterinaries Section -->
-            <section class="m-6">
+            <section class="my-6">
                 <h2 class="text-2xl font-semibold mb-4">Veterinaries</h2>
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop1.png" alt="Cassa de Perro Veterinary Clinic" class="w-full h-40 object-cover">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop1.png" alt="Cassa de Perro Veterinary Clinic" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Veterinary</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
                         <div class="p-4">
-                            <h3 class="font-semibold">Cassa de Perro Veterinary Clinic</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">Rumuokwu Rd, Zamboanga, Zamboanga del Sur</p>
+                            <h3 class="font-semibold text-lg">Cassa De Perro Veterinary Clinic</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Rumuokwu Rd, Zamboanga, Zamboanga del Sur</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop2.png" alt="Paws and Claws" class="w-full h-40 object-cover">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop2.png" alt="Paws and Claws" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Veterinary</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
                         <div class="p-4">
-                            <h3 class="font-semibold">Paws and Claws</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">San Alfaro St, Zamboanga, 7000 Zamboanga del Sur</p>
+                            <h3 class="font-semibold text-lg">Paws and Claws</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">San Alfaro St, Zamboanga, 7000 Zamboanga del Sur</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop3.png" alt="Waltec" class="w-full h-40 object-cover">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop3.png" alt="Waltec" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Veterinary</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
                         <div class="p-4">
-                            <h3 class="font-semibold">Waltec</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">Nuñez Ext. St, Zamboanga, Zamboanga del Sur</p>
-                        </div>        
+                            <h3 class="font-semibold text-lg">Waltec</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Nuñez Ext. St, Zamboanga, Zamboanga del Sur</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- Grooming Section -->
-            <section class="m-6">
+            <section class="my-6">
                 <h2 class="text-2xl font-semibold mb-4">Grooming</h2>
-                <div class="grid grid-cols-3 gap-6">
-                    <!-- Repeat the structure from the Most Popular section for grooming services -->
-                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop1.png" alt="Cassa de Perro Veterinary Clinic" class="w-full h-40 object-cover">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop1.png" alt="Cassa de Perro Veterinary Clinic" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Grooming</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
                         <div class="p-4">
-                            <h3 class="font-semibold">Cassa de Perro Veterinary Clinic</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">Rumuokwu Rd, Zamboanga, Zamboanga del Sur</p>
+                            <h3 class="font-semibold text-lg">Cassa De Perro Veterinary Clinic</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Rumuokwu Rd, Zamboanga, Zamboanga del Sur</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop2.png" alt="Paws and Claws" class="w-full h-40 object-cover">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop2.png" alt="Paws and Claws" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Grooming</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
                         <div class="p-4">
-                            <h3 class="font-semibold">Paws and Claws</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">San Alfaro St, Zamboanga, 7000 Zamboanga del Sur</p>
+                            <h3 class="font-semibold text-lg">Paws and Claws</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">San Alfaro St, Zamboanga, 7000 Zamboanga del Sur</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="images/shops/shop3.png" alt="Waltec" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-semibold">Waltec</h3>
-                            <p class="text-yellow-500">★★★★★ 5.0</p>
-                            <p class="text-gray-600 text-sm">Nuñez Ext. St, Zamboanga, Zamboanga del Sur</p>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="images/shops/shop3.png" alt="Waltec" class="w-full h-40 object-cover">
+                            <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">Grooming</span>
+                            <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
                         </div>
-                     
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg">Waltec</h3>
+                            <div class="flex items-center mt-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-1">Nuñez Ext. St, Zamboanga, Zamboanga del Sur</p>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white">
+    <footer class="bg-gray-800 text-white mt-auto">
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 grid grid-cols-4 gap-8">
             <div>
                 <h3 class="text-lg font-semibold mb-4">Services</h3>
