@@ -1,30 +1,43 @@
-# Pet Care Connect Platform - Admin Dashboard
+# Pet Care Connect Platform
 
 ## Project Overview
 
-Pet Care Connect is a comprehensive web-based platform being developed as part of the Software Engineering 1 and 2 courses. This platform aims to connect pet owners with various pet care services, including grooming, veterinary care. The current implementation focuses on the admin dashboard.
+Pet Care Connect is a comprehensive web-based platform developed as part of the Software Engineering 1 and 2 courses. This platform aims to connect pet owners with various pet care services, including grooming and veterinary care. The current implementation includes both the admin dashboard and the customer-facing interface.
 
-## Features (Admin Dashboard)
+## Features
 
 - **User Management**: Tools for managing customers, shop owners, and staff accounts.
 - **Shop Management**: Oversight and control of registered pet care shops.
 - **Service Management**: Tools to manage and approve services offered by shops.
-- **Payment Management**: Monitor and manage payment transactions.
-- **Reports and Analytics**: Detailed insights into platform performance and user activities.
-- **Support System**: Tools to handle user inquiries and resolve disputes.
-- **Settings**: Configuration options for the platform.
+- **Appointment Booking**: Allows customers to book appointments for various pet care services.
+- **Search Functionality**: Enables users to find nearby grooming and veterinary services.
+- **User Reviews and Ratings**: Customers can rate and review pet care services.
+- **Responsive Design**: Mobile-friendly interface for both admin and customer views.
 
 ## Technology Stack
 
 - **Frontend**: HTML, CSS (Tailwind CSS), JavaScript
-- **Backend**: PHP (to be implemented)
-- **Database**: MySQL (to be implemented)
-- **Authentication**: [To be determined]
-- **Payment Processing**: [To be determined]
+- **Backend**: PHP
+- **Database**: MySQL (to be fully implemented)
+- **Authentication**: PHP Session-based (basic implementation)
+- **Additional Libraries**: 
+  - Alpine.js for reactive components
+  - Chart.js for data visualization (admin dashboard)
 
 ## Project Status
 
-This project is currently in development. The admin dashboard frontend has been implemented, but backend functionality and database integration are yet to be completed.
+This project is currently in active development. The following components have been implemented:
+
+- Admin dashboard frontend
+- Customer-facing interface frontend
+- Basic PHP backend structure
+- Session-based authentication (login/logout functionality)
+
+Pending tasks include:
+- Full database integration
+- Complete backend functionality for all features
+- Payment processing integration
+- Enhanced security measures
 
 ## Installation
 
@@ -36,16 +49,19 @@ This project is currently in development. The admin dashboard frontend has been 
    ```
    cd pet-care-connect
    ```
-3. Open the HTML files in a web browser to view the admin dashboard interface.
+3. Set up a local PHP server (e.g., XAMPP, WAMP) and ensure MySQL is running.
+4. Import the database schema (when available).
+5. Configure the database connection in the PHP files.
+6. Access the application through your local server's URL.
 
 ## Future Development
 
-- Implement PHP backend
-- Set up MySQL database
-- Develop customer-facing interface
-- Implement shop owner dashboard
-- Integrate authentication system
+- Implement full MySQL database integration
+- Develop shop owner dashboard
+- Enhance authentication system with more secure methods
 - Add payment processing functionality
+- Implement real-time notifications for appointments and messages
+- Develop a mobile app version
 
 ## Contributing
 
@@ -67,29 +83,8 @@ This project is part of an academic course and is not open for external contribu
 - Tailwind CSS for the UI framework
 - Font Awesome for icons
 - Chart.js for data visualization
+- Alpine.js for reactive JavaScript components
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-MIT License
-
-Copyright (c) 2024 Pet Care Connect
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
