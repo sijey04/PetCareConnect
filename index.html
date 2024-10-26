@@ -504,15 +504,14 @@
         signupButtons.forEach(button => {
             button.addEventListener('click', function(event) {
                 event.preventDefault();
-                showPopup();
+                window.location.href = 'signup.php'; // Redirect to signup page
             });
         });
 
         loginButtons.forEach(button => {
             button.addEventListener('click', function(event) {
                 event.preventDefault();
-            alert('Redirecting to login page...');
-            window.location.href = 'login.php';
+                window.location.href = 'login.php'; // Redirect to login page
             });
         });
 
