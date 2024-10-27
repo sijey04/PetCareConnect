@@ -83,23 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
     <style>
-        @media (max-width: 1023px) {
-            .image-container {
-                display: none;
-            }
-        }
-        .image-container {
-            width: 1400px;
-            height: 580px;
-            overflow: hidden;
-            padding-right: 64px;
-        }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            margin-right: 32px;
-        }
         .password-strength-meter {
             height: 5px;
             background-color: #ddd;
@@ -114,27 +97,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="flex flex-col lg:flex-row min-h-screen bg-custom-bg font-[Poppins]">
-    <div class="hidden lg:flex flex-1 relative overflow-hidden bg-custom-bg min-h-screen items-center justify-center order-1 lg:order-2 pr-24">
+    <!-- Image container for desktop only -->
+    <div class="hidden lg:flex flex-1 relative overflow-hidden bg-custom-bg min-h-screen items-center justify-center order-1 lg:order-2">
         <div class="absolute top-4 right-4 z-20">
-            <a href="index.html">
+            <a href="NA-Index.php">
                 <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 md:w-48">
             </a>
         </div>
-        <div class="image-container">
-            <img src="images/kitten2.png" alt="Cute kitten" class="relative z-10">
+        <div class="relative w-full h-full flex items-center justify-center pr-24 md:pr-32 lg:pr-40 pb-12 md:pb-20 lg:pb-28">
+            <img src="images/kitten2.png" alt="Cute kitten" class="relative z-10 w-[400px] md:w-[600px] lg:w-[700px] xl:w-[800px] object-contain mr-12 md:mr-20 lg:mr-28">
         </div>
     </div>
+    
+    <!-- Sign up form container -->
     <div class="flex-1 flex items-center justify-center bg-custom-bg p-4 lg:p-8 order-2 lg:order-1">
-        <div class="w-full max-w-md space-y-8 px-8 py-10 bg-white rounded-3xl shadow-xl">
+        <div class="w-full max-w-md space-y-8 px-4 sm:px-8 py-8 sm:py-10 bg-white rounded-3xl shadow-xl">
             <div class="text-center">
-                <h2 class="text-3xl font-bold">Get Started With</h2>
-                <a href="index.html">
-                    <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 mx-auto mt-2">
+                <h2 class="text-2xl sm:text-3xl font-bold">Get Started With</h2>
+                <a href="NA-Index.php">
+                    <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-24 sm:w-32 mx-auto mt-2">
                 </a>
-                <p class="text-gray-600 mt-2">Getting started is easy</p>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">Getting started is easy</p>
             </div>
-            <?php
-            if (!empty($error)): ?>
+            
+            <!-- Error and success messages -->
+            <?php if (!empty($error)): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
                     <span class="block sm:inline"><?php echo htmlspecialchars($error); ?></span>
                 </div>
@@ -146,38 +133,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             <?php endif; ?>
 
+            <!-- Social login buttons -->
             <div class="flex space-x-4">
-                <button class="flex-1 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                    <img src="images/icons/google-logo.png" alt="Google logo" class="w-5 h-5 mr-2">
+                <button class="flex-1 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-xs sm:text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                    <img src="images/icons/google-logo.png" alt="Google logo" class="w-4 h-4 sm:w-5 sm:h-5 mr-2">
                     Google
                 </button>
-                <button class="flex-1 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                    <img src="images/icons/facebook-logo.png" alt="Facebook logo" class="w-5 h-5 mr-2">
+                <button class="flex-1 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-xs sm:text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                    <img src="images/icons/facebook-logo.png" alt="Facebook logo" class="w-4 h-4 sm:w-5 sm:h-5 mr-2">
                     Facebook
                 </button>
             </div>
+
+            <!-- Divider -->
             <div class="relative">
                 <div class="absolute inset-0 flex items-center">
                     <span class="w-full border-t border-gray-300"></span>
                 </div>
-                <div class="relative flex justify-center text-sm">
+                <div class="relative flex justify-center text-xs sm:text-sm">
                     <span class="px-2 bg-white text-gray-500">Or continue with</span>
                 </div>
             </div>
-            <form class="space-y-6" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+            <!-- Sign up form -->
+            <form class="space-y-4 sm:space-y-6" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div>
-                    <input type="text" name="first_name" placeholder="First Name" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
+                    <input type="text" name="first_name" placeholder="First Name" required class="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
                 </div>
                 <div>
-                    <input type="text" name="last_name" placeholder="Last Name" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
+                    <input type="text" name="last_name" placeholder="Last Name" required class="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
                 </div>
                 <div>
-                    <input type="email" name="email" placeholder="Enter Email" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
+                    <input type="email" name="email" placeholder="Enter Email" required class="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
                 </div>
                 <div class="relative">
-                    <input type="password" name="password" id="password" placeholder="Password" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
+                    <input type="password" name="password" id="password" placeholder="Password" required class="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
                     <button type="button" onclick="togglePassword('password')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                             <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                         </svg>
@@ -187,27 +179,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
                 <div class="relative">
-                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required class="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom-blue focus:border-custom-blue">
                     <button type="button" onclick="togglePassword('confirm_password')" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                             <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
                 </div>
-                <p class="text-sm text-gray-500 mt-1">Password must be at least 8 characters long and contain a special character.</p>
+                <p id="password-match" class="text-xs sm:text-sm mt-1"></p>
+                <p class="text-xs sm:text-sm text-gray-500 mt-1">Password must be at least 8 characters long and contain a special character.</p>
                 <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-custom-blue hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-blue">
                     Create Account
                 </button>
             </form>
-            <p class="text-center text-sm text-gray-600">
-                have an account?
+            <p class="text-center text-xs sm:text-sm text-gray-600">
+                Have an account?
                 <a href="login.php" class="text-custom-blue hover:underline">
                     Sign in!
                 </a>
             </p>
         </div>
     </div>
+
     <script>
         function togglePassword(inputId) {
             var x = document.getElementById(inputId);
@@ -247,7 +241,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     bar.style.backgroundColor = '#0f0';
                     break;
             }
+            checkPasswordMatch();
         });
+
+        document.getElementById('confirm_password').addEventListener('input', checkPasswordMatch);
+
+        function checkPasswordMatch() {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm_password').value;
+            var matchMessage = document.getElementById('password-match');
+
+            if (password === confirmPassword && password !== '') {
+                matchMessage.textContent = 'Passwords match';
+                matchMessage.style.color = 'green';
+            } else if (confirmPassword !== '') {
+                matchMessage.textContent = 'Passwords do not match';
+                matchMessage.style.color = 'red';
+            } else {
+                matchMessage.textContent = '';
+            }
+        }
     </script>
 </body>
 </html>

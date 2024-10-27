@@ -143,9 +143,9 @@ if (isset($_GET['expired']) && $_GET['expired'] == 1) {
 </head>
 
 <body class="flex flex-col lg:flex-row min-h-screen bg-custom-bg font-[Poppins]">
-    <div class="flex-1 relative overflow-hidden bg-custom-bg min-h-[50vh] lg:min-h-screen flex items-center justify-center">
+    <div class="hidden lg:flex flex-1 relative overflow-hidden bg-custom-bg min-h-[50vh] lg:min-h-screen items-center justify-center">
         <div class="absolute top-4 left-4 z-20">
-            <a href="index.html">
+            <a href="NA-Index.php">
                 <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 md:w-48">
             </a>
         </div>
