@@ -1,0 +1,19 @@
+{
+  "name": "petcentral",
+  "version": "1.0.0",
+  "description": "Pet Care Connect is a comprehensive web-based platform developed as part of the Software Engineering 1 and 2 courses. This platform aims to connect pet owners with various pet care services, including grooming and veterinary care. The current implementation includes both the admin dashboard and the customer-facing interface.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss -i ./src/css/main.css -o ./dist/css/styles.css --watch",
+    "build": "npx tailwindcss -i ./src/css/main.css -o ./dist/css/styles.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14"
+  }
+}
