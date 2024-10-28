@@ -125,21 +125,10 @@ if (isset($_GET['expired']) && $_GET['expired'] == 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Login - Pet Care Connect</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="dist/css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'custom-bg': '#E5E5E5',
-                        'custom-blue': '#4A90E2',
-                    }
-                }
-            }
-        }
-    </script>
 </head>
 
 <body class="flex flex-col lg:flex-row min-h-screen bg-custom-bg font-[Poppins]">

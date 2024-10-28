@@ -18,7 +18,12 @@ require_once 'session_check.php';
             <img src="images/logo.png" alt="Pet Care Connect Logo" class="h-auto w-full max-w-[200px]">
         </div>
         <div class="flex-grow flex justify-between items-center px-4">
-            <div class="flex items-center">
+            <div class="flex items-center">     
+                <button class="mr-4 lg:hidden">
+                    <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
                 <div class="relative">
                     <input type="text" placeholder="Filter" class="pl-8 pr-4 py-2 border rounded-md">
                     <svg class="h-5 w-5 text-gray-400 absolute left-2 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,35 +31,34 @@ require_once 'session_check.php';
                     </svg>
                 </div>
             </div>
-            <div class="flex items-center">
-                <button class="mr-4">
-                    <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            <div class="flex items-center space-x-2">
+                <a href="login.php" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
+                    <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                     </svg>
-                </button>
-                <div class="relative" x-data="{ open: false }">
-                    <img src="images/01.jpg" alt="User profile" class="h-8 w-8 rounded-full cursor-pointer" @click="open = !open">
-                    <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                        <a href="logout.php" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Sign out</a>
-                    </div>
-                </div>
+                    Login
+                </a>
+                <a href="signup.php" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
+                    <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                    </svg>
+                    Sign Up
+                </a>
             </div>
         </div>
     </header>
 
     <!-- Add this after the header -->
     <div class="lg:hidden">
-        <!-- Mobile Sidebar Toggle Button -->
-        <button id="mobile-menu-button" class="fixed left-4 top-24 z-50 p-3 rounded-full bg-white text-gray-500 shadow-lg hover:bg-gray-100 transition-colors duration-200">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <!-- Mobile Sidebar Toggle Button - Updated positioning -->
+        <button id="mobile-menu-button" class="fixed top-4 left-4 z-50 p-2 rounded-lg bg-white shadow-lg hover:bg-gray-100 transition-colors duration-200">
+            <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
 
-        <!--Mobile Sidebar -->
-        <div id="mobile-menu" class="fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 pt-20">
+        <!-- Mobile Sidebar - Updated z-index -->
+        <div id="mobile-menu" class="fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50">
             <!-- Header with logo and close button -->
             <div class="flex justify-between items-center p-4 border-b bg-gray-50">
             
@@ -67,12 +71,19 @@ require_once 'session_check.php';
 
             <!-- User Profile Section -->
             <div class="p-4 border-b bg-gray-50">
-                <div class="flex items-center space-x-3">
-                    <img src="images/01.jpg" alt="User Profile" class="h-12 w-12 rounded-full">
-                    <div>
-                        <h3 class="font-semibold text-gray-800">John Doe</h3>
-                        <p class="text-sm text-gray-600">Pet Owner</p>
-                    </div>
+                <div class="flex flex-col space-y-2">
+                    <a href="login.php" class="flex items-center py-3 px-4 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors duration-200">
+                        <svg class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                        </svg>
+                        Login
+                    </a>
+                    <a href="signup.php" class="flex items-center py-3 px-4 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors duration-200">
+                        <svg class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                        </svg>
+                        Sign Up
+                    </a>
                 </div>
             </div>
 
@@ -94,8 +105,8 @@ require_once 'session_check.php';
                             </svg>
                             Services
                         </a>
-                        <a href="#" class="flex items-center py-3 px-4 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors duration-200">
-                            <svg class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <a href="#" id="appointments-link" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
+                            <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                             Appointments
@@ -139,20 +150,18 @@ require_once 'session_check.php';
                             </svg>
                             Terms & Privacy
                         </a>
-                        <a href="logout.php" class="flex items-center py-3 px-4 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200">
-                            <svg class="h-5 w-5 mr-3 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            Logout
-                        </a>
+                        
                     </div>
                 </div>
             </nav>
         </div>
 
-        <!-- Improved Overlay with blur effect -->
-        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out"></div>
+        <!-- Improved Overlay with blur effect - Updated z-index -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-40"></div>
     </div>
+
+    <!-- Add this overlay div just before the main content -->
+    <div id="content-overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-30"></div>
 
     <!-- Update the main content container classes -->
     <div class="flex flex-1 overflow-hidden">
@@ -172,7 +181,7 @@ require_once 'session_check.php';
                         </svg>
                         Services
                     </a>
-                    <a href="#" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
+                    <a href="#" id="appointments-link" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
                         <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -257,7 +266,7 @@ require_once 'session_check.php';
                     <div class="z-10 mb-8 lg:mb-0 lg:w-1/2 text-center lg:text-left">
                         <p class="text-gray-600 mb-2">No need to worry,</p>
                         <h2 class="text-4xl font-bold mb-4">We Provide Grooming and Vet Checks</h2>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition duration-300 ease-in-out mb-4">Book now</button>
+                        <button id="book-now-button" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition duration-300 ease-in-out mb-4">Book now</button>
                         <div class="relative">
                             <input type="text" placeholder="Nearest Groom/Veterinary" class="w-full px-4 py-2 border rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <svg class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -543,8 +552,106 @@ require_once 'session_check.php';
         </div>
     </footer>
 
+
+    <!-- Add this just before the closing </body> tag -->
+    <div id="signup-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg w-96 p-6 relative">
+            <!-- Close button -->
+            <button id="close-popup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <!-- Welcome message -->
+            <h2 class="text-2xl font-bold text-center mb-4">Welcome to Pet Care Connect!</h2>
+            
+            <!-- Description -->
+            <p class="text-gray-600 text-center mb-6">Join our community to access exclusive pet care services</p>
+            
+            <!-- Sign Up and Log In buttons -->
+            <div class="flex justify-center space-x-4 mb-6">
+                <button id="signup-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                    </svg>
+                    Sign Up
+                </button>
+                <button id="login-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                    </svg>
+                    Log In
+                </button>
+            </div>
+            
+            <!-- Nearest Groom/Veterinary search bar -->
+            <div class="relative">
+                <input type="text" placeholder="Find Nearest Groom/Veterinary" class="w-full px-4 py-2 border rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <svg class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- At the end of the file, just before the closing </body> tag -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const popup = document.getElementById('signup-popup');
+        const closeButton = document.getElementById('close-popup');
+        const signupButtons = document.querySelectorAll('#signup-button');
+        const loginButtons = document.querySelectorAll('#login-button');
+        const bookNowButton = document.getElementById('book-now-button');
+        const appointmentsLinks = document.querySelectorAll('#appointments-link');
+
+        function showPopup() {
+            popup.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hidePopup() {
+            popup.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        closeButton.addEventListener('click', hidePopup);
+
+        signupButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                window.location.href = 'signup.php';
+            });
+        });
+
+        loginButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                window.location.href = 'login.php';
+            });
+        });
+
+        if (bookNowButton) {
+            bookNowButton.addEventListener('click', showPopup);
+        }
+
+        appointmentsLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                showPopup();
+            });
+        });
+
+        popup.addEventListener('click', function(event) {
+            if (event.target === popup) {
+                hidePopup();
+            }
+        });
+    });
+    </script>
+     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const scrollLinks = document.querySelectorAll('.scroll-to');
         scrollLinks.forEach(link => {
@@ -567,21 +674,24 @@ require_once 'session_check.php';
         const closeMobileMenuButton = document.getElementById('close-mobile-menu');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const contentOverlay = document.getElementById('content-overlay');
         let isMenuOpen = false;
 
         function toggleMobileMenu() {
             isMenuOpen = !isMenuOpen;
             if (isMenuOpen) {
-                // Open menu
                 mobileMenu.classList.remove('-translate-x-full');
                 mobileMenuOverlay.classList.add('opacity-50');
                 mobileMenuOverlay.classList.remove('pointer-events-none');
+                contentOverlay.classList.remove('pointer-events-none');
+                contentOverlay.classList.add('opacity-50');
                 document.body.classList.add('overflow-hidden');
             } else {
-                // Close menu
                 mobileMenu.classList.add('-translate-x-full');
                 mobileMenuOverlay.classList.remove('opacity-50');
                 mobileMenuOverlay.classList.add('pointer-events-none');
+                contentOverlay.classList.add('pointer-events-none');
+                contentOverlay.classList.remove('opacity-50');
                 document.body.classList.remove('overflow-hidden');
             }
         }
@@ -591,27 +701,27 @@ require_once 'session_check.php';
             mobileMenu.classList.add('-translate-x-full');
             mobileMenuOverlay.classList.remove('opacity-50');
             mobileMenuOverlay.classList.add('pointer-events-none');
+            contentOverlay.classList.add('pointer-events-none');
+            contentOverlay.classList.remove('opacity-50');
             document.body.classList.remove('overflow-hidden');
         }
 
-        // Use toggle function for menu button
         mobileMenuButton.addEventListener('click', toggleMobileMenu);
         closeMobileMenuButton.addEventListener('click', closeMobileMenu);
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-        // Close mobile menu when clicking on a link
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', closeMobileMenu);
         });
 
-        // Close mobile menu on window resize (if screen becomes large)
         window.addEventListener('resize', function() {
-            if (window.innerWidth >= 1024) { // lg breakpoint
+            if (window.innerWidth >= 1024) {
                 closeMobileMenu();
             }
         });
     });
     </script>
+
 </body>
 </html>

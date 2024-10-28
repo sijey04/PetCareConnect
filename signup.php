@@ -67,33 +67,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Sign Up - Pet Care Connect</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="dist/css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'custom-bg': '#E5E5E5',
-                        'custom-blue': '#4A90E2',
-                    }
-                }
+        function togglePassword(inputId) {
+            var x = document.getElementById(inputId);
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
             }
         }
+
+        document.getElementById('password').addEventListener('input', function() {
+            var password = this.value;
+            var strength = 0;
+            var bar = document.getElementById('password-strength-bar');
+
+            if (password.length >= 8) strength += 25;
+            if (password.match(/[a-z]+/)) strength += 25;
+            if (password.match(/[A-Z]+/)) strength += 25;
+            if (password.match(/[0-9]+/)) strength += 25;
+            if (password.match(/[$@#&!]+/)) strength += 25;
+
+            switch (true) {
+                case (strength <= 25):
+                    bar.style.width = '25%';
+                    bar.style.backgroundColor = '#f00';
+                    break;
+                case (strength > 25 && strength <= 50):
+                    bar.style.width = '50%';
+                    bar.style.backgroundColor = '#ff0';
+                    break;
+                case (strength > 50 && strength <= 75):
+                    bar.style.width = '75%';
+                    bar.style.backgroundColor = '#ff0';
+                    break;
+                case (strength > 75):
+                    bar.style.width = '100%';
+                    bar.style.backgroundColor = '#0f0';
+                    break;
+            }
+        });
     </script>
-    <style>
-        .password-strength-meter {
-            height: 5px;
-            background-color: #ddd;
-            margin-top: 5px;
-        }
-        .password-strength-meter div {
-            height: 100%;
-            width: 0;
-            transition: width 0.3s ease-in-out;
-        }
-    </style>
 </head>
 
 <body class="flex flex-col lg:flex-row min-h-screen bg-custom-bg font-[Poppins]">
@@ -104,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="images/logo.png" alt="Pet Care Connect Logo" class="w-32 md:w-48">
             </a>
         </div>
-        <div class="relative w-full h-full flex items-center justify-center pr-24 md:pr-32 lg:pr-40 pb-12 md:pb-20 lg:pb-28">
+        <div class="relative w-full h-full flex items-center justify-center pr-24 md:pr-32 lg:pr-40 pb-12 md:pb-20 lg:pb-">
             <img src="images/kitten2.png" alt="Cute kitten" class="relative z-10 w-[400px] md:w-[600px] lg:w-[700px] xl:w-[800px] object-contain mr-12 md:mr-20 lg:mr-28">
         </div>
     </div>
@@ -187,7 +205,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </svg>
                     </button>
                 </div>
-                <p id="password-match" class="text-xs sm:text-sm mt-1"></p>
                 <p class="text-xs sm:text-sm text-gray-500 mt-1">Password must be at least 8 characters long and contain a special character.</p>
                 <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-custom-blue hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-blue">
                     Create Account
@@ -202,65 +219,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <script>
-        function togglePassword(inputId) {
-            var x = document.getElementById(inputId);
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-
-        document.getElementById('password').addEventListener('input', function() {
-            var password = this.value;
-            var strength = 0;
-            var bar = document.getElementById('password-strength-bar');
-
-            if (password.length >= 8) strength += 25;
-            if (password.match(/[a-z]+/)) strength += 25;
-            if (password.match(/[A-Z]+/)) strength += 25;
-            if (password.match(/[0-9]+/)) strength += 25;
-            if (password.match(/[$@#&!]+/)) strength += 25;
-
-            switch (true) {
-                case (strength <= 25):
-                    bar.style.width = '25%';
-                    bar.style.backgroundColor = '#f00';
-                    break;
-                case (strength > 25 && strength <= 50):
-                    bar.style.width = '50%';
-                    bar.style.backgroundColor = '#ff0';
-                    break;
-                case (strength > 50 && strength <= 75):
-                    bar.style.width = '75%';
-                    bar.style.backgroundColor = '#ff0';
-                    break;
-                case (strength > 75):
-                    bar.style.width = '100%';
-                    bar.style.backgroundColor = '#0f0';
-                    break;
-            }
-            checkPasswordMatch();
-        });
-
-        document.getElementById('confirm_password').addEventListener('input', checkPasswordMatch);
-
-        function checkPasswordMatch() {
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirm_password').value;
-            var matchMessage = document.getElementById('password-match');
-
-            if (password === confirmPassword && password !== '') {
-                matchMessage.textContent = 'Passwords match';
-                matchMessage.style.color = 'green';
-            } else if (confirmPassword !== '') {
-                matchMessage.textContent = 'Passwords do not match';
-                matchMessage.style.color = 'red';
-            } else {
-                matchMessage.textContent = '';
-            }
-        }
-    </script>
 </body>
 </html>
