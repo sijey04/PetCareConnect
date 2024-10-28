@@ -1,1 +1,112 @@
+# Dependencies
+/node_modules/
+/vendor/
+
+# Build and distribution files
+/dist/
+/build/
+/dist/css/styles.css
+
+# Environment and configuration files
+.env
+.env.local
+.env.*
+config.local.php
+database.local.php
+connection.local.php
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and debugging
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+error_log
+access_log
+/logs/
+
+# Cache and temporary files
+.cache/
+.npm/
+.eslintcache
+/tmp/
+/temp/
+*.tmp
+*.temp
+.sass-cache/
+
+# Backup files
+*.bak
+*.backup
+*~
+*.old
+*.orig
+
+# PHP specific
+composer.phar
+phpunit.xml
+.phpunit.result.cache
+/vendor/
+
+# Project specific
 /Untitled-1.txt
+/uploads/
+/images/temp/
+/backups/
+
+# Local development files
+*.local.php
+config.local.php
+database.local.php
+
+# Package manager files
+package-lock.json
+yarn.lock
+composer.lock
+
+# Database files
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Media and large files
+*.mp4
+*.mov
+*.avi
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# Tailwind CSS specific
+/public/css/
+/public/js/
+.postcss.config.js
+
+# Security
+.htaccess
+.htpasswd
+auth.json
