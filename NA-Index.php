@@ -1,5 +1,5 @@
 <?php
-require_once 'session_check.php';
+require_once 'classes/session_check.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,16 +10,20 @@ require_once 'session_check.php';
     <title>PET CARE CONNECT</title>
     <link href="dist/css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="js/script.js" defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="js/components.js"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
 </head>
-<body id="top" class="bg-gray-100 flex flex-col min-h-screen">
+<body id="top" class="bg-gray-100 flex flex-col min-h-screen" x-data="mobileMenu">
     <header class="bg-white shadow-sm sticky top-0 z-50 flex items-center">
         <div class="flex-shrink-0 p-4 w-56">
             <img src="images/logo.png" alt="Pet Care Connect Logo" class="h-auto w-full max-w-[200px]">
         </div>
         <div class="flex-grow flex justify-between items-center px-4">
             <div class="flex items-center">     
-                <button class="mr-4 lg:hidden">
+                <button x-on:click="toggleMenu()" class="mr-4 lg:hidden">
                     <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -32,13 +36,13 @@ require_once 'session_check.php';
                 </div>
             </div>
             <div class="flex items-center space-x-2">
-                <a href="login.php" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
+                <a href="auth/login.php" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
                     <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                     </svg>
                     Login
                 </a>
-                <a href="signup.php" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
+                <a href="auth/signup.php" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
                     <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                     </svg>
@@ -50,19 +54,14 @@ require_once 'session_check.php';
 
     <!-- Add this after the header -->
     <div class="lg:hidden">
-        <!-- Mobile Sidebar Toggle Button - Updated positioning -->
-        <button id="mobile-menu-button" class="fixed top-4 left-4 z-50 p-2 rounded-lg bg-white shadow-lg hover:bg-gray-100 transition-colors duration-200">
-            <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
-
-        <!-- Mobile Sidebar - Updated z-index -->
-        <div id="mobile-menu" class="fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50">
+        <!-- Mobile Sidebar -->
+        <div id="mobile-menu" 
+             x-cloak
+             class="fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50"
+             :class="{ '-translate-x-full': !isOpen, 'translate-x-0': isOpen }">
             <!-- Header with logo and close button -->
             <div class="flex justify-between items-center p-4 border-b bg-gray-50">
-            
-                <button id="close-mobile-menu" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                <button @click="closeMenu()" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200">
                     <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -72,13 +71,13 @@ require_once 'session_check.php';
             <!-- User Profile Section -->
             <div class="p-4 border-b bg-gray-50">
                 <div class="flex flex-col space-y-2">
-                    <a href="login.php" class="flex items-center py-3 px-4 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors duration-200">
+                    <a href="auth/login.php" class="flex items-center py-3 px-4 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors duration-200">
                         <svg class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                         </svg>
                         Login
                     </a>
-                    <a href="signup.php" class="flex items-center py-3 px-4 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors duration-200">
+                    <a href="auth/signup.php" class="flex items-center py-3 px-4 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors duration-200">
                         <svg class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
@@ -105,8 +104,10 @@ require_once 'session_check.php';
                             </svg>
                             Services
                         </a>
-                        <a href="#" id="appointments-link" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
-                            <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <a href="#" 
+                           @click.prevent="$dispatch('open-signup')" 
+                           class="flex items-center py-3 px-4 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors duration-200">
+                            <svg class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                             Appointments
@@ -156,15 +157,17 @@ require_once 'session_check.php';
             </nav>
         </div>
 
-        <!-- Improved Overlay with blur effect - Updated z-index -->
-        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-40"></div>
+        <!-- Single Overlay -->
+        <div id="mobile-menu-overlay" 
+             x-cloak
+             x-show="isOpen"
+             class="fixed inset-0 bg-black/50 transition-opacity duration-300 ease-in-out z-40"
+             @click="closeMenu">
+        </div>
     </div>
 
-    <!-- Add this overlay div just before the main content -->
-    <div id="content-overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-30"></div>
-
     <!-- Update the main content container classes -->
-    <div class="flex flex-1 overflow-hidden">
+    <div class="flex flex-1">
         <!-- Sidebar - Hide on mobile -->
         <aside class="hidden lg:block w-56 bg-gray-100 shadow-md flex-shrink-0">
             <nav class="flex-grow h-full">
@@ -181,7 +184,9 @@ require_once 'session_check.php';
                         </svg>
                         Services
                     </a>
-                    <a href="#" id="appointments-link" class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
+                    <a href="#" 
+                       @click.prevent="$dispatch('open-signup')"
+                       class="flex items-center py-2 px-4 text-gray-700 hover:bg-gray-200 hover:text-gray-900 rounded-md transition-colors duration-200">
                         <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -266,7 +271,10 @@ require_once 'session_check.php';
                     <div class="z-10 mb-8 lg:mb-0 lg:w-1/2 text-center lg:text-left">
                         <p class="text-gray-600 mb-2">No need to worry,</p>
                         <h2 class="text-4xl font-bold mb-4">We Provide Grooming and Vet Checks</h2>
-                        <button id="book-now-button" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition duration-300 ease-in-out mb-4">Book now</button>
+                        <button @click="$dispatch('open-signup')" 
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition duration-300 ease-in-out mb-4">
+                            Book now
+                        </button>
                         <div class="relative">
                             <input type="text" placeholder="Nearest Groom/Veterinary" class="w-full px-4 py-2 border rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <svg class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -552,13 +560,17 @@ require_once 'session_check.php';
         </div>
     </footer>
 
-
-    <!-- Add this just before the closing </body> tag -->
-    <div id="signup-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-white rounded-lg shadow-lg w-96 p-6 relative">
+    <!-- Update the popup div -->
+    <div id="signup-popup" 
+         x-data="{ open: false }"
+         x-show="open"
+         @open-signup.window="open = true"
+         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+         style="display: none;">
+        <div class="bg-white rounded-lg shadow-lg w-96 p-6 relative" @click.outside="open = false">
             <!-- Close button -->
-            <button id="close-popup" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <button @click="open = false" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
@@ -571,21 +583,21 @@ require_once 'session_check.php';
             
             <!-- Sign Up and Log In buttons -->
             <div class="flex justify-center space-x-4 mb-6">
-                <button id="signup-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <a href="auth/signup.php" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                     </svg>
                     Sign Up
-                </button>
-                <button id="login-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                </a>
+                <a href="auth/login.php" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                     </svg>
                     Log In
-                </button>
+                </a>
             </div>
             
-            <!-- Nearest Groom/Veterinary search bar -->
+            <!-- Search bar -->
             <div class="relative">
                 <input type="text" placeholder="Find Nearest Groom/Veterinary" class="w-full px-4 py-2 border rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <svg class="h-5 w-5 text-gray-400 absolute right-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -595,133 +607,6 @@ require_once 'session_check.php';
             </div>
         </div>
     </div>
-
-    <!-- At the end of the file, just before the closing </body> tag -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const popup = document.getElementById('signup-popup');
-        const closeButton = document.getElementById('close-popup');
-        const signupButtons = document.querySelectorAll('#signup-button');
-        const loginButtons = document.querySelectorAll('#login-button');
-        const bookNowButton = document.getElementById('book-now-button');
-        const appointmentsLinks = document.querySelectorAll('#appointments-link');
-
-        function showPopup() {
-            popup.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function hidePopup() {
-            popup.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        closeButton.addEventListener('click', hidePopup);
-
-        signupButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                window.location.href = 'signup.php';
-            });
-        });
-
-        loginButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                window.location.href = 'login.php';
-            });
-        });
-
-        if (bookNowButton) {
-            bookNowButton.addEventListener('click', showPopup);
-        }
-
-        appointmentsLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                showPopup();
-            });
-        });
-
-        popup.addEventListener('click', function(event) {
-            if (event.target === popup) {
-                hidePopup();
-            }
-        });
-    });
-    </script>
-     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const scrollLinks = document.querySelectorAll('.scroll-to');
-        scrollLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-        const contentOverlay = document.getElementById('content-overlay');
-        let isMenuOpen = false;
-
-        function toggleMobileMenu() {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                mobileMenu.classList.remove('-translate-x-full');
-                mobileMenuOverlay.classList.add('opacity-50');
-                mobileMenuOverlay.classList.remove('pointer-events-none');
-                contentOverlay.classList.remove('pointer-events-none');
-                contentOverlay.classList.add('opacity-50');
-                document.body.classList.add('overflow-hidden');
-            } else {
-                mobileMenu.classList.add('-translate-x-full');
-                mobileMenuOverlay.classList.remove('opacity-50');
-                mobileMenuOverlay.classList.add('pointer-events-none');
-                contentOverlay.classList.add('pointer-events-none');
-                contentOverlay.classList.remove('opacity-50');
-                document.body.classList.remove('overflow-hidden');
-            }
-        }
-
-        function closeMobileMenu() {
-            isMenuOpen = false;
-            mobileMenu.classList.add('-translate-x-full');
-            mobileMenuOverlay.classList.remove('opacity-50');
-            mobileMenuOverlay.classList.add('pointer-events-none');
-            contentOverlay.classList.add('pointer-events-none');
-            contentOverlay.classList.remove('opacity-50');
-            document.body.classList.remove('overflow-hidden');
-        }
-
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-        closeMobileMenuButton.addEventListener('click', closeMobileMenu);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 1024) {
-                closeMobileMenu();
-            }
-        });
-    });
-    </script>
 
 </body>
 </html>
