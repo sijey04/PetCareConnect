@@ -1,17 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./*.php",  // Root PHP files
-    "./src/**/*.{html,js,php}",
-    "./pages/**/*.{html,js,php}",
-    "./components/**/*.{html,js,php}",
-    "./admin/**/*.{html,js,php}"  // Admin files
+    "./auth/**/*.{php,html,js}",
+    "./resources/**/*.{php,html,js}",
+    "./*.php",
   ],
   theme: {
     extend: {
       colors: {
-        'custom-bg': '#E5E5E5',
-        'custom-blue': '#4A90E2',
+        'custom-bg': '#f3f4f6',
+        'custom-blue': '#3b82f6',
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
