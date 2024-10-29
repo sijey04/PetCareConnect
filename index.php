@@ -1,5 +1,5 @@
 <?php
-require_once 'session_check.php';
+require_once 'classes/session_check.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,7 @@ require_once 'session_check.php';
     <link href="dist/css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="js/script.js" defer></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body id="top" class="bg-gray-100 flex flex-col min-h-screen">
     <header class="bg-white shadow-sm sticky top-0 z-50 flex items-center">
@@ -20,7 +21,7 @@ require_once 'session_check.php';
         <div class="flex-grow flex justify-between items-center px-4">
             <div class="flex items-center">
                 <div class="relative">
-                    <input type="text" placeholder="Filter" class="pl-8 pr-4 py-2 border rounded-md">
+                    <input type="text" placeholder="Filter" class="pl-8 prI-4 py-2 border rounded-md">
                     <svg class="h-5 w-5 text-gray-400 absolute left-2 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -37,7 +38,7 @@ require_once 'session_check.php';
                     <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                        <a href="logout.php" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Sign out</a>
+                        <a href="auth/logout.php" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Sign out</a>
                     </div>
                 </div>
             </div>
@@ -45,20 +46,25 @@ require_once 'session_check.php';
     </header>
 
     <!-- Add this after the header -->
-    <div class="lg:hidden">
+    <div class="lg:hidden" x-data="{ isOpen: false }">
         <!-- Mobile Sidebar Toggle Button -->
-        <button id="mobile-menu-button" class="fixed left-4 top-24 z-50 p-3 rounded-full bg-white text-gray-500 shadow-lg hover:bg-gray-100 transition-colors duration-200">
+        <button id="mobile-menu-button" 
+                @click="isOpen = !isOpen" 
+                class="fixed left-4 top-24 z-50 p-3 rounded-full bg-white text-gray-500 shadow-lg hover:bg-gray-100 transition-colors duration-200">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
 
         <!--Mobile Sidebar -->
-        <div id="mobile-menu" class="fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 pt-20">
+        <div id="mobile-menu" 
+             class="fixed inset-y-0 left-0 w-[85%] max-w-sm bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40 pt-20"
+             :class="{ '-translate-x-full': !isOpen, 'translate-x-0': isOpen }">
             <!-- Header with logo and close button -->
             <div class="flex justify-between items-center p-4 border-b bg-gray-50">
-            
-                <button id="close-mobile-menu" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                <button @click="isOpen = false" 
+                        id="close-mobile-menu" 
+                        class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200">
                     <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -151,7 +157,11 @@ require_once 'session_check.php';
         </div>
 
         <!-- Improved Overlay with blur effect -->
-        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out"></div>
+        <div id="mobile-menu-overlay" 
+             class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-in-out"
+             :class="{ 'opacity-0 pointer-events-none': !isOpen, 'opacity-50': isOpen }"
+             @click="isOpen = false">
+        </div>
     </div>
 
     <!-- Update the main content container classes -->
@@ -542,76 +552,5 @@ require_once 'session_check.php';
             &copy; 2023 Pet Care Connect. All rights reserved.
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const scrollLinks = document.querySelectorAll('.scroll-to');
-        scrollLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-        let isMenuOpen = false;
-
-        function toggleMobileMenu() {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                // Open menu
-                mobileMenu.classList.remove('-translate-x-full');
-                mobileMenuOverlay.classList.add('opacity-50');
-                mobileMenuOverlay.classList.remove('pointer-events-none');
-                document.body.classList.add('overflow-hidden');
-            } else {
-                // Close menu
-                mobileMenu.classList.add('-translate-x-full');
-                mobileMenuOverlay.classList.remove('opacity-50');
-                mobileMenuOverlay.classList.add('pointer-events-none');
-                document.body.classList.remove('overflow-hidden');
-            }
-        }
-
-        function closeMobileMenu() {
-            isMenuOpen = false;
-            mobileMenu.classList.add('-translate-x-full');
-            mobileMenuOverlay.classList.remove('opacity-50');
-            mobileMenuOverlay.classList.add('pointer-events-none');
-            document.body.classList.remove('overflow-hidden');
-        }
-
-        // Use toggle function for menu button
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-        closeMobileMenuButton.addEventListener('click', closeMobileMenu);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-        // Close mobile menu when clicking on a link
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Close mobile menu on window resize (if screen becomes large)
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 1024) { // lg breakpoint
-                closeMobileMenu();
-            }
-        });
-    });
-    </script>
 </body>
 </html>
