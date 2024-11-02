@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import 'bootstrap/dist/css/bootstrap.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.bg-custom-bg {
+    background-color: #f3f4f6;
+}
+
+.text-custom-blue {
+    color: #3b82f6;
+}
+
+.bg-custom-blue {
+    background-color: #3b82f6;
+}
+
+/* Focus styles */
+.focus\:ring-custom-blue:focus {
+    --tw-ring-color: #3b82f6;
+}
+
+.focus\:border-custom-blue:focus {
+    border-color: #3b82f6;
+}
+
+/* Hover styles */
+.hover\:bg-blue-600:hover {
+    background-color: #2563eb;
+}
