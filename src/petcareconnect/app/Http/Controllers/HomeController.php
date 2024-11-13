@@ -27,16 +27,16 @@ class HomeController extends Controller
 
         $services = [
             (object)[
-                'name' => 'Dog Grooming',
-                'description' => 'Professional grooming services for all breeds'
+                'name' => 'Grooming',
+                'description' => 'Professional grooming services to keep your pet looking and feeling their best. Our expert groomers provide personalized care for all breeds.'
             ],
             (object)[
-                'name' => 'Dog Walking',
-                'description' => 'Regular exercise and outdoor activities'
+                'name' => 'Bath',
+                'description' => 'Professional grooming services to keep your pet looking and feeling their best. Our expert groomers provide personalized care for all breeds.'
             ],
             (object)[
-                'name' => 'Pet Sitting',
-                'description' => 'In-home care when you\'re away'
+                'name' => 'Check-Up',
+                'description' => 'Comprehensive veterinary check-ups to ensure your pet\'s health and well-being. Our experienced vets provide thorough examinations and preventive care.'
             ]
         ];
 

@@ -4,30 +4,41 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Shop extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
         'type',
-        'address',
         'image',
+        'rating',
+        'address',
+        'description'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function ratings()
     {
         return $this->hasMany(Rating::class);
     }
 
-    public function getImageAttribute($value)
+    // Calculate average rating
+    public function calculateAverageRating()
     {
-        if (!$value) {
-            return 'images/default-shop.png'; // Create a default image
-        }
-        
-        return Storage::url($value);
+        return $this->ratings()->avg('rating') ?? 0.0;
+    }
+
+    // Update shop's rating
+    public function updateRating()
+    {
+        $this->rating = $this->calculateAverageRating();
+        $this->save();
     }
 } 

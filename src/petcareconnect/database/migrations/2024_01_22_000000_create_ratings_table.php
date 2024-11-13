@@ -15,6 +15,9 @@ return new class extends Migration
             $table->decimal('rating', 2, 1);
             $table->text('comment')->nullable();
             $table->timestamps();
+
+            // Prevent duplicate ratings from the same user for the same shop
+            $table->unique(['shop_id', 'user_id']);
         });
     }
 

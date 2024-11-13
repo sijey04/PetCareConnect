@@ -4,7 +4,12 @@
         @foreach($popularShops as $shop)
         <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
             <div class="relative">
-                <img src="{{ asset($shop->image) }}" alt="{{ $shop->name }}" class="w-full h-40 object-cover">
+                <img 
+                    src="{{ asset($shop->image) }}" 
+                    alt="{{ $shop->name }}" 
+                    class="w-full h-40 object-cover"
+                    onerror="this.src='{{ asset('images/default-shop.png') }}'"
+                >
                 <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">
                     {{ $shop->type }}
                 </span>

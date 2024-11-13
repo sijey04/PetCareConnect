@@ -5,21 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rating extends Model
+class Pet extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'shop_id',
-        'user_id',
-        'rating',
-        'comment'
+        'name',
+        'type',
+        'breed',
+        'weight',
+        'height',
+        'user_id'
     ];
-
-    public function shop()
-    {
-        return $this->belongsTo(Shop::class);
-    }
 
     public function user()
     {

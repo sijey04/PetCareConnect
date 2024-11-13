@@ -41,7 +41,7 @@
                 this.isOpen = false;
             }
         }))
-    })
+    }) 
 </script>
 @endpush
 @endsection 

@@ -32,16 +32,18 @@
 
                 <!-- User Profile Dropdown -->
                 <div class="relative" x-data="{ open: false }">
-                    <img src="{{ Auth::user()->profile_photo_url ?? asset('images/default-profile.png') }}" 
-                         alt="User profile" 
-                         class="h-8 w-8 rounded-full cursor-pointer" 
-                         @click="open = !open">
+                    <img 
+                        src="{{ auth()->user()->profile_photo_url }}" 
+                        alt="User profile" 
+                        class="h-8 w-8 rounded-full cursor-pointer object-cover" 
+                        @click="open = !open"
+                    >
                     
                     <div x-show="open" 
                          @click.away="open = false" 
                          class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                        <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                        <a href="{{ route('settings') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
