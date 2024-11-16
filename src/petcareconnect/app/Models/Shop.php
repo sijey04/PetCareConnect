@@ -9,14 +9,30 @@ class Shop extends Model
 {
     use HasFactory;
 
+    protected $table = 'shops';
+
     protected $fillable = [
         'user_id',
         'name',
         'type',
-        'image',
-        'rating',
+        'phone',
+        'description',
         'address',
-        'description'
+        'latitude',
+        'longitude',
+        'image',
+        'tin',
+        'vat_status',
+        'bir_certificate',
+        'rating',
+        'terms_accepted'
+    ];
+
+    protected $casts = [
+        'latitude' => 'decimal:8',
+        'longitude' => 'decimal:8',
+        'rating' => 'decimal:1',
+        'terms_accepted' => 'boolean'
     ];
 
     public function user()
@@ -27,18 +43,5 @@ class Shop extends Model
     public function ratings()
     {
         return $this->hasMany(Rating::class);
-    }
-
-    // Calculate average rating
-    public function calculateAverageRating()
-    {
-        return $this->ratings()->avg('rating') ?? 0.0;
-    }
-
-    // Update shop's rating
-    public function updateRating()
-    {
-        $this->rating = $this->calculateAverageRating();
-        $this->save();
     }
 } 

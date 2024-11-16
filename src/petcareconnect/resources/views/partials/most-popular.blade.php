@@ -13,13 +13,13 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl">
                 <div class="relative">
                     <img 
-                        src="{{ $shop->image }}" 
+                        src="{{ $shop->image ? asset('storage/' . $shop->image) : asset('images/default-shop.png') }}" 
                         alt="{{ $shop->name }}" 
                         class="w-full h-40 object-cover"
                         onerror="this.src='{{ asset('images/default-shop.png') }}'"
                     >
                     <span class="absolute top-2 left-2 bg-white text-black text-xs font-semibold px-2 py-1 rounded-full">
-                        {{ $shop->type }}
+                        {{ ucfirst($shop->type) }}
                     </span>
                     <button class="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

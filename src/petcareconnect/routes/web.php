@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ShopRegistrationController;
+use App\Http\Controllers\ShopDashboardController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -17,9 +18,9 @@ Auth::routes();
 
 // Protected routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
     Route::resource('appointments', AppointmentController::class);
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/update-info', [ProfileController::class, 'updatePersonalInfo'])->name('profile.update-info');
     Route::post('/profile/update-photo', [ProfileController::class, 'updateProfilePhoto'])->name('profile.update-photo');
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
@@ -42,11 +43,18 @@ Route::get('/book/{shop}', [BookingController::class, 'show'])->name('booking.sh
 
 // Shop Registration Routes
 Route::prefix('shop')->name('shop.')->group(function () {
-    Route::get('/register', [ShopRegistrationController::class, 'showPreRegistration'])->name('register');
-    Route::get('/register/form', [ShopRegistrationController::class, 'showRegistrationForm'])->name('register.form')->middleware('auth');
-    Route::post('/register', [ShopRegistrationController::class, 'register'])->name('register.store')->middleware('auth');
+    // Pre-registration routes
+    Route::get('/pre-register', [ShopRegistrationController::class, 'showPreRegistration'])->name('pre.register');
+    Route::post('/pre-register', [ShopRegistrationController::class, 'handlePreRegistration'])->name('pre.register.submit');
+    
+    // Main registration routes - ensure these are protected by auth middleware
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/register', [ShopRegistrationController::class, 'showRegistrationForm'])->name('register.form');
+        Route::post('/register', [ShopRegistrationController::class, 'register'])->name('register');
+    });
 });
 
-Route::get('/shop/pre-register', [ShopRegistrationController::class, 'showPreRegistration'])->name('shop.register');
-Route::get('/shop/register', [ShopRegistrationController::class, 'showRegistrationForm'])->name('shop.register.form');
-Route::post('/shop/register', [ShopRegistrationController::class, 'register']);
+Route::middleware(['auth', \App\Http\Middleware\HasShop::class])->group(function () {
+    Route::get('/shop/dashboard', [ShopDashboardController::class, 'index'])->name('shop.dashboard');
+    Route::post('/shop/mode/customer', [ShopDashboardController::class, 'switchToCustomerMode'])->name('shop.mode.customer');
+});

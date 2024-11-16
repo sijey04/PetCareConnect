@@ -69,17 +69,22 @@ class ProfileController extends Controller
 
         if ($request->hasFile('profile_photo')) {
             // Delete old profile photo if exists
-            if ($user->profile_photo_path) {
+            if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
                 Storage::disk('public')->delete($user->profile_photo_path);
             }
 
             // Store new profile photo
             $path = $request->file('profile_photo')->store('profile-photos', 'public');
-            $user->profile_photo_path = $path;
-            $user->save();
+            
+            // Update user with new photo path
+            $user->update([
+                'profile_photo_path' => $path
+            ]);
+
+            return back()->with('success', 'Profile photo updated successfully');
         }
 
-        return back()->with('success', 'Profile photo updated successfully');
+        return back()->with('error', 'No photo uploaded');
     }
 
     public function updateLocation(Request $request)

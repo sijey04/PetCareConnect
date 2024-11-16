@@ -19,7 +19,7 @@
 
     <!-- Main Content with Sidebar -->
     <div class="flex flex-1">
-        @include('partials.sidebar')
+        
         
         <!-- Main Content -->
         <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

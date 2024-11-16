@@ -25,6 +25,8 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
+        \Log::info('Popular shops:', $popularShops->toArray());
+
         $services = [
             (object)[
                 'name' => 'Grooming',

@@ -16,6 +16,10 @@ class Rating extends Model
         'comment'
     ];
 
+    protected $casts = [
+        'rating' => 'decimal:1'
+    ];
+
     public function shop()
     {
         return $this->belongsTo(Shop::class);

@@ -19,11 +19,33 @@
     <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
-    @stack('styles')
-</head>
-<body>
-    @yield('content')
+    <!-- OpenStreetMap CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     
+    <!-- Additional Styles -->
+    @stack('styles')
+
+    <!-- Custom Styles -->
+    <style>
+        [x-cloak] { 
+            display: none !important; 
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-[Poppins]">
+    <!-- Content -->
+    @yield('content')
+
+    <!-- Scripts -->
     @stack('scripts')
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Leaflet loaded:', typeof L !== 'undefined');
+        });
+    </script>
 </body>
 </html> 
